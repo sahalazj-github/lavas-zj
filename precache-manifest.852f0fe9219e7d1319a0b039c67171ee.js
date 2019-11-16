@@ -4,11 +4,11 @@ self.__precacheManifest = [
     "url": "/lavas-zj/static/js/vendor.1bc5d28c.js"
   },
   {
-    "revision": "a81eee6c483be7b41765",
-    "url": "/lavas-zj/static/js/index.a81eee6c.js"
+    "revision": "0cbb611b7598c750a320",
+    "url": "/lavas-zj/static/js/index.0cbb611b.js"
   },
   {
-    "revision": "a81eee6c483be7b41765",
+    "revision": "0cbb611b7598c750a320",
     "url": "/lavas-zj/static/css/index.3a3d3f62.css"
   },
   {
@@ -20,28 +20,24 @@ self.__precacheManifest = [
     "url": "/lavas-zj/static/js/manifest.52157e6d.js"
   },
   {
-    "revision": "83409fb3fe88cb94d7d3df5fe97569c9",
-    "url": "/lavas-zj/static/img/icons/apple-touch-icon-152x152.png"
+    "revision": "b451e38c6ee4b03781b1019c518e7894",
+    "url": "/lavas-zj/static/img/icons/apple-touch-icon-120x120.png"
   },
   {
     "revision": "b8a42c4a3b00c4f75bc636f2923eaeca",
     "url": "/lavas-zj/static/img/icons/android-chrome-192x192.png"
   },
   {
-    "revision": "b451e38c6ee4b03781b1019c518e7894",
-    "url": "/lavas-zj/static/img/icons/apple-touch-icon-120x120.png"
-  },
-  {
-    "revision": "4dc6fdc67611efce36a3c500cbe1c0ec",
-    "url": "/lavas-zj/static/img/icons/apple-touch-icon-60x60.png"
-  },
-  {
-    "revision": "7264d2ec7553bb96307af4acbe697faf",
-    "url": "/lavas-zj/static/img/icons/favicon.ico"
+    "revision": "83409fb3fe88cb94d7d3df5fe97569c9",
+    "url": "/lavas-zj/static/img/icons/apple-touch-icon-152x152.png"
   },
   {
     "revision": "3742528143340e36915adf388d64060f",
     "url": "/lavas-zj/static/img/icons/favicon-16x16.png"
+  },
+  {
+    "revision": "4dc6fdc67611efce36a3c500cbe1c0ec",
+    "url": "/lavas-zj/static/img/icons/apple-touch-icon-60x60.png"
   },
   {
     "revision": "588079df8f1b8fde3b3cd691ee65bf06",
@@ -50,6 +46,10 @@ self.__precacheManifest = [
   {
     "revision": "047f3021e153c19951f86dd209904243",
     "url": "/lavas-zj/static/img/icons/favicon-32x32.png"
+  },
+  {
+    "revision": "7264d2ec7553bb96307af4acbe697faf",
+    "url": "/lavas-zj/static/img/icons/favicon.ico"
   },
   {
     "revision": "21b39911074e22df0e25858265be76bb",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/lavas-zj/favicon.ico"
   },
   {
-    "revision": "0fef57e9bc84674e80aac25015ee8627",
+    "revision": "541bcb1d959009971e3eab880e388daa",
     "url": "/lavas-zj/index.html"
   }
 ];

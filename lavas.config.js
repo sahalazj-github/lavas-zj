@@ -15,7 +15,7 @@ module.exports = {
         ssr: false,
         compress: true,
         path: BUILD_PATH,
-        publicPath: '/lavas-zj',
+        publicPath: '/lavas-zj/',
         ssrCopy: isDev ? [] : [
             {
                 src: 'server.prod.js'

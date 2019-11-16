@@ -1,4 +1,4 @@
-importScripts("/lavas-zj/precache-manifest.852f0fe9219e7d1319a0b039c67171ee.js");
+importScripts("/lavas-zj/precache-manifest.02801c62b2c07c26d1a1476ab5034f31.js");
 
 
         importScripts('/lavas-zj/static/workbox-v3.6.3/workbox-sw.js');
@@ -33,7 +33,7 @@ self.addEventListener('message', event => {
 /**
  * example runningCache with api
  */
- workbox.routing.registerRoute(/^https:\/\/lavas\.baidu\.com\/some\/api/,
+ workbox.routing.registerRoute(/^https:\/\/js\.arcgis\.com\/4.13/,
      workbox.strategies.networkFirst());
 
 

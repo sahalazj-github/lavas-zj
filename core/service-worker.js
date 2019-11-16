@@ -26,7 +26,7 @@ self.addEventListener('message', event => {
 /**
  * example runningCache with api
  */
- workbox.routing.registerRoute(/^https:\/\/lavas\.baidu\.com\/some\/api/,
+ workbox.routing.registerRoute(/^https:\/\/js\.arcgis\.com\/4.13/,
      workbox.strategies.networkFirst());
 
 

@@ -1,9 +1,9 @@
-importScripts("/lavas-zjprecache-manifest.569ccf78913c237da3f54e45cea3a4dd.js");
+importScripts("/lavas-zj/precache-manifest.2b56d43c8ab44c0e317e0b707169f69a.js");
 
 
-        importScripts('/lavas-zjstatic/workbox-v3.6.3/workbox-sw.js');
+        importScripts('/lavas-zj/static/workbox-v3.6.3/workbox-sw.js');
         workbox.setConfig({
-            modulePathPrefix: '/lavas-zjstatic/workbox-v3.6.3/'
+            modulePathPrefix: '/lavas-zj/static/workbox-v3.6.3/'
         });
     /**
  * @file service-worker.js with workbox api

@@ -26,8 +26,8 @@ self.addEventListener('message', event => {
 /**
  * example runningCache with api
  */
- workbox.routing.registerRoute(/https:\/\/js\.arcgis\.com\/4\.13|https:\/\/sahalazj-github\.github\.io\/lavas-zj/,
-     workbox.strategies.networkFirst());
+// workbox.routing.registerRoute(/https:\/\/js\.arcgis\.com\/4\.13|https:\/\/sahalazj-github\.github\.io\/lavas-zj/,
+ //    workbox.strategies.networkFirst());
 
 
 /**

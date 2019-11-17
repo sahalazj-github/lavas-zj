@@ -1,4 +1,4 @@
-importScripts("/lavas-zj/precache-manifest.aa25da7d1d41027ad024ee84f5e8830c.js");
+importScripts("/lavas-zj/precache-manifest.7d0406c9d126b9ae648dba453655481d.js");
 
 
         importScripts('/lavas-zj/static/workbox-v3.6.3/workbox-sw.js');

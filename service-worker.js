@@ -1,4 +1,4 @@
-importScripts("/lavas-zj/precache-manifest.f47a17cce5bb7cf4680f991303076154.js");
+importScripts("/lavas-zj/precache-manifest.042be6ccbb3291f89ed3f6328fef3e2d.js");
 
 
         importScripts('/lavas-zj/static/workbox-v3.6.3/workbox-sw.js');
@@ -21,9 +21,7 @@ workbox.core.setCacheNameDetails({
 });
 // workbox.skipWaiting();
 workbox.clientsClaim();
-
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
-
 self.addEventListener('message', event => {
     if (event.data === 'skipWaiting') {
         self.skipWaiting();
@@ -34,9 +32,8 @@ self.addEventListener('message', event => {
  * example runningCache with api
  */
 //workbox.routing.registerRoute(/https:\/\/js\.arcgis\.com\/4\.13|https:\/\/map\.geoq\.cn|https:\/\/www\.arcgis\.com|https:\/\/geocode\.arcgis\.com/,
-workbox.routing.registerRoute(/\.arcgis\.com|\.geoq\.cn/,
+workbox.routing.registerRoute(/https:\/\/(\w+\.)+geoq\.cn|https:\/\/(\w+\.)+arcgis\.com/,
     workbox.strategies.networkFirst());
-
 
 /**
  * example runningCache with resources from CDN

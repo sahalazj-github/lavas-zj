@@ -1,4 +1,4 @@
-importScripts("/lavas-zj/precache-manifest.d24ed29522774b0c922417d3b926a461.js");
+importScripts("/lavas-zj/precache-manifest.2d36a6701d01efb54f3157ad26aa0846.js");
 
 
         importScripts('/lavas-zj/static/workbox-v3.6.3/workbox-sw.js');
@@ -33,7 +33,7 @@ self.addEventListener('message', event => {
 /**
  * example runningCache with api
  */
- workbox.routing.registerRoute(/\.geoq\.cn|\.arcgis\.com/,
+ workbox.routing.registerRoute(/https:\/\/js\.arcgis\.com\/4\.13|https:\/\/map\.geoq\.cn|https:\/\/www\.arcgis\.com/,
      workbox.strategies.networkFirst());
 
 
@@ -42,20 +42,20 @@ self.addEventListener('message', event => {
  * including maxAge, maxEntries
  * cacheableResponse is important for CDN
  */
-// workbox.routing.registerRoute(/^https:\/\/cdn\.baidu\.com/i,
-//     workbox.strategies.cacheFirst({
-//         cacheName: 'lavas-cache-images',
-//         plugins: [
-//             new workbox.expiration.Plugin({
-//                 maxEntries: 100,
-//                 maxAgeSeconds: 7 * 24 * 60 * 60
-//             }),
-//             new workbox.cacheableResponse.Plugin({
-//                 statuses: [0, 200]
-//             })
-//         ]
-//     })
-// );
+ workbox.routing.registerRoute(/^https:\/\/cdn\.baidu\.com/i,
+     workbox.strategies.cacheFirst({
+         cacheName: 'lavas-cache-images',
+         plugins: [
+             new workbox.expiration.Plugin({
+                maxEntries: 100,
+                maxAgeSeconds: 7 * 24 * 60 * 60
+            }),
+            new workbox.cacheableResponse.Plugin({
+                 statuses: [0, 200]
+          })
+         ]
+     })
+ );
 
 
 

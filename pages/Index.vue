@@ -9,7 +9,13 @@ function setState(store) {}
 const options = {
     url: 'https://js.arcgis.com/4.13/'
 }
+const cityMap = {
+    'wuhan':'248aed894a504e30ac5fea4771d82c4a',
+    '武汉':'248aed894a504e30ac5fea4771d82c4a',
+    'beijing':'5cb4f64a2af3411c88e99f40ee96224b',
+    '北京':'5cb4f64a2af3411c88e99f40ee96224b'
 
+}
 
 
 esriLoader.loadCss('https://js.arcgis.com/4.13/esri/themes/light/main.css')
@@ -18,95 +24,109 @@ esriLoader.loadModules ([
     "esri/views/MapView",
     "esri/Graphic",
     "esri/layers/FeatureLayer",
-    "esri/WebMap"
+    "esri/WebMap",
+    "esri/widgets/Search"
 ], options)
     .then (([
-                Map, MapView, Graphic, FeatureLayer, WebMap
+                Map, MapView, Graphic, FeatureLayer, WebMap,Search
             ]) => {
         var map = new Map({
             basemap: "hybrid"
         });
-        const layer = new FeatureLayer({
+
+        var webMap = new WebMap({
             portalItem: {
                 // autocasts as new PortalItem
-                id: "248aed894a504e30ac5fea4771d82c4a"
-            },
-            renderer: {
-                type: "simple", // autocasts as new SimpleRenderer()
-                symbol: {
-                    type: "simple-line", // autocasts as new SimpleMarkerSymbol()
-                    color: "rgba(0,100,0,0.6)",
-                    text: "首都",
-                    size: 3,
-                    outline: {
-                        color: [0, 0, 0, 0.1],
-                        width: 0.5
-                    }
-                }
-            },
-            outFields: ["*"]
-        });
+                id: "5cd32b831bfb43d08e5ee75e7b40d53d"
+            }
+        })
         var view = new MapView({
-            center: [117, 30],
             container: "viewDiv",
-            map: new WebMap({
-                portalItem: {
-                    // autocasts as new PortalItem
-                    id: "5cd32b831bfb43d08e5ee75e7b40d53d"
-                },
-                layers: [layer]
-            }),
-            zoom: 6
+            map: webMap,
+            zoom:3
         });
 
+        var searchWidget = new Search({
+            view: view,
+            autoSelect:false
+        });
+        view.ui.add(
+            searchWidget,
+            "top-right"
+        );
         view.on("click", function(event){
             // event is the event handle returned after the event fires.
-            console.log(event.mapPoint.y,event.mapPoint.x);
+            console.log(event.mapPoint.x,event.mapPoint.y);
         });
-        layer.queryFeatures().then(function(results) {
-            // prints an array of all the features in the service to the console
-            console.log(results.features);
-            var len = results.features.length
-            var point = len>0?results.features[0]:{};
-            var rings = point.geometry&&point.geometry.rings;
-            rings=rings[0];
-            var coordi = rings.length>0?rings[0]:[];
-            if(coordi){
-                var xCoordi = parseInt(coordi[0]/100000);
-                var yCoordi = parseInt(coordi[1]/100000);
-            }
-            console.log(xCoordi,yCoordi)
-            drawTriangle(xCoordi,yCoordi)
-        });
-        function drawTriangle(x,y) {
-            var polygon = {
-                type: "polygon", // autocasts as new Polygon()
-                rings: [
-                    [x, y],
-                    [x+15, y+15],
-                    [x-15, y+15],
-                    [x, y]
-                ]
+        function queryFeature(layer) {
+            layer.queryFeatures().then(function (results) {
+                // prints an array of all the features in the service to the console
+                var len = results.features.length
+                var point = len > 0 ? results.features[0] : {};
+                var extent = point.geometry && point.geometry.extent;
+                var latitude = extent.center && extent.center.latitude
+                var longitude = extent.center && extent.center.longitude
+                drawDot(latitude, longitude)
+            });
+
+        }
+        function drawDot(x,y) {
+            console.log('x is',x,'y is',y)
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: y,
+                latitude: x
             };
 
-            // Create a symbol for rendering the graphic
-            var fillSymbol = {
-                type: "simple-line", // autocasts as new SimpleFillSymbol()
+            // Create a symbol for drawing the point
+            var markerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
                 color: [226, 119, 40],
                 outline: {
                     // autocasts as new SimpleLineSymbol()
                     color: [255, 255, 255],
-                    width: 1
+                    width: 2
                 }
             };
 
-            // Add the geometry and symbol to a new graphic
-            var polygonGraphic = new Graphic({
-                geometry: polygon,
-                symbol: fillSymbol
+            // Create a graphic and add the geometry and symbol to it
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: markerSymbol
             });
-            view.graphics.addMany([polygonGraphic]);
+            view.graphics.addMany([pointGraphic]);
         }
+            searchWidget.on("search-blur", function(event){
+                let value = event.target.searchTerm;
+                if(!cityMap[value]){
+                    return
+                }
+                view.zoom = 3
+                webMap.layers.removeAll();
+                view.graphics.removeAll()
+                const layer = new FeatureLayer({
+                    portalItem: {
+                        // autocasts as new PortalItem
+                        id: cityMap[value]
+                    },
+                    renderer: {
+                        type: "simple", // autocasts as new SimpleRenderer()
+                        symbol: {
+                            type: "simple-line", // autocasts as new SimpleMarkerSymbol()
+                            color: "rgba(0,100,0,0.6)",
+                            size: 3,
+                            outline: {
+                                color: [0, 0, 0, 0.1],
+                                width: 0.5
+                            }
+                        }
+                    },
+                    outFields: ["*"]
+                });
+                webMap.layers.add(layer);
+                queryFeature(layer)
+            });
+
 
     }, reason => {
         console.log (reason);
